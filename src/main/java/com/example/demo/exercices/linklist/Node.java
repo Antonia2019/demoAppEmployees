@@ -1,4 +1,4 @@
-package com.example.demo.linklist;
+package com.example.demo.exercices.linklist;
 
 public class Node {
     public int data;

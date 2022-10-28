@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.exercices;
 
 import com.example.demo.address.Address;
 import com.example.demo.employee.Employee;

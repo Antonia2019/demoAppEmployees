@@ -1,4 +1,4 @@
-package com.example.demo.hashmap;
+package com.example.demo.exercices.hashmap;
 
 public class App {
 
