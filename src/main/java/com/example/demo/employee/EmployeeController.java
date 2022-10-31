@@ -16,17 +16,17 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/getAllEmployees")
+    @GetMapping("/employees")
     public List<Employee> getEmployee() {
         return employeeService.getEmployees();
     }
 
-    @PostMapping("/registerEmployee")
+    @PostMapping("/employee")
     public void registerNewEmployee(@RequestBody Employee employee) {
         employeeService.addNewEmployee(employee);
     }
 
-    @PutMapping(path = "/update/{employeeId}")
+    @PutMapping(path = "/employee/{employeeId}")
     public void updateEmployee(@PathVariable("employeeId") Long employeeId,
                                @RequestParam(required = false) String name,
                                @RequestParam(required = false) Long salary,
@@ -34,7 +34,7 @@ public class EmployeeController {
         employeeService.updateEmployee(employeeId, name, salary, designation);
     }
 
-    @DeleteMapping("/deleteEmployee/{employeeId}")
+    @DeleteMapping("/employee/{employeeId}")
     public void deleteEmployee(@PathVariable("employeeId") Long id) {
         employeeService.deleteEmployee(id);
     }

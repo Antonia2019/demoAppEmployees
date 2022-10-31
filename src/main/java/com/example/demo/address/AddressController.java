@@ -16,19 +16,19 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping("/getAllAddresses")
+    @GetMapping("/addresses")
     public List<Address> getAddress() {
 
         return addressService.getAddress();
     }
 
-    @PostMapping("/registerAddress")
+    @PostMapping("/address")
     public void registerNewAddress(@RequestBody Address address) {
         addressService.addNewAddress(address);
     }
 
 
-    @PutMapping(path = "/updateAddress/{id}")
+    @PutMapping(path = "/address/{id}")
     public void updateAddress(
             @PathVariable("id") Long id,
             @RequestParam(required = false) String oras,
@@ -37,7 +37,7 @@ public class AddressController {
         addressService.updateAddress(id, oras, strada, numar);
     }
 
-    @DeleteMapping(path = "/deleteAddress/{addressId}")
+    @DeleteMapping(path = "/address/{addressId}")
     public void deleteAddress(@PathVariable("addressId") Long id) {
         addressService.deleteAddress(id);
     }
