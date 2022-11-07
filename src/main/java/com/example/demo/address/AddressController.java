@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1")
+@RequestMapping(path = "api/v1/address")
 public class AddressController {
 
     private final AddressService addressService;
@@ -16,28 +16,24 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @GetMapping("/addresses")
+    @GetMapping
     public List<Address> getAddress() {
-
         return addressService.getAddress();
     }
 
-    @PostMapping("/address")
+    @PostMapping
     public void registerNewAddress(@RequestBody Address address) {
         addressService.addNewAddress(address);
     }
 
 
-    @PutMapping(path = "/address/{id}")
+    @PutMapping(path = "{id}")
     public void updateAddress(
-            @PathVariable("id") Long id,
-            @RequestParam(required = false) String oras,
-            @RequestParam(required = false) String strada,
-            @RequestParam(required = false) Integer numar) {
-        addressService.updateAddress(id, oras, strada, numar);
+            @PathVariable("id") Long id, @RequestBody Address address) {
+        addressService.updateAddress(id, address);
     }
 
-    @DeleteMapping(path = "/address/{addressId}")
+    @DeleteMapping(path = "{addressId}")
     public void deleteAddress(@PathVariable("addressId") Long id) {
         addressService.deleteAddress(id);
     }

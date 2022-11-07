@@ -29,12 +29,14 @@ public class AddressService {
     }
 
     @Transactional
-    public void updateAddress(Long id, String oras, String strada, Integer numar) {
-        Address address = addressRepository.findById(id).
+    public void updateAddress(Long id, Address address) {
+        Address addressToUpdate = addressRepository.findById(id).
                 orElseThrow(()-> new IllegalStateException("Address with id "+ id + " doesn't exist"));
-        address.setOras(oras);
-        address.setStrada(strada);
-        address.setNumar(numar);
+        addressToUpdate.setOras(address.getOras());
+        addressToUpdate.setStrada(address.getStrada());
+        addressToUpdate.setNumar(address.getNumar());
+
+        addressRepository.saveAndFlush(addressToUpdate);
     }
 
 

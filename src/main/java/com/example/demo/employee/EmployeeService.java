@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class EmployeeService {
@@ -26,14 +25,15 @@ public class EmployeeService {
     }
 
     @Transactional
-    public void updateEmployee(Long id, String name, Long salary, String designation) {  // UPDATE*
-        Employee employee = employeeRepository.findById(id)
+    public void updateEmployee(Long id, Employee employee) {  // UPDATE*
+        Employee employeeToUpdate = employeeRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("employee with id "+ id + " doesn't exist"));
-        if(name != null && name.length() > 0 && !Objects.equals(employee.getName(),name)) {
-            employee.setName(name);
-            employee.setSalary(salary);
-            employee.setDesignation(designation);
-        }
+
+        employeeToUpdate.setName(employee.getName());
+        employeeToUpdate.setSalary(employee.getSalary());
+        employeeToUpdate.setDesignation(employee.getDesignation());
+
+        employeeRepository.save(employeeToUpdate);
     }
     public void deleteEmployee(Long employeeId) {  // DELETE
         employeeRepository.deleteById(employeeId);
